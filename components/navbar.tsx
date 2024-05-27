@@ -1,5 +1,3 @@
-"use client";
-
 import React, { useEffect, useState } from "react";
 import {
   Navbar as NextUINavbar,
@@ -28,23 +26,17 @@ import { redirect } from "next/navigation";
 import LoginLogout from "./login-logout";
 import { Session } from "next-auth";
 
-const Navbar = () => {
-  const [session, setSession] = useState<Session | null>(null);
+const Navbar = async () => {
 
-  useEffect(() => {
-    const fetchSession = async () => {
-      const sessionData = await auth();
-      setSession(sessionData);
-    };
+  const session = await auth()
 
-    fetchSession();
-  }, []);
-
-  const redirectSignIn = () => {
+  const redirectSignIn = async () => {
+    "use server"
     redirect("/api/auth/signin");
   };
 
-  const redirectSignOut = () => {
+  const redirectSignOut = async () => {
+    "use server"
     redirect("/api/auth/signout");
   };
 
