@@ -1,3 +1,6 @@
+"use client";
+
+import React, { useEffect, useState } from "react";
 import {
   Navbar as NextUINavbar,
   NavbarContent,
@@ -11,36 +14,39 @@ import { Button } from "@nextui-org/button";
 import { Kbd } from "@nextui-org/kbd";
 import { Link } from "@nextui-org/link";
 import { Input } from "@nextui-org/input";
-import { link as linkStyles } from "@nextui-org/theme";
 import NextLink from "next/link";
-import clsx from "clsx";
 
 import { siteConfig } from "@/config/site";
 import { ThemeSwitch } from "@/components/theme-switch";
 import {
-  TwitterIcon,
   GithubIcon,
-  DiscordIcon,
   HeartFilledIcon,
   SearchIcon,
-  Logo,
 } from "@/components/icons";
 import { auth } from "@/auth";
 import { redirect } from "next/navigation";
 import LoginLogout from "./login-logout";
+import { Session } from "next-auth";
 
-export const Navbar = async () => {
-  const session = await auth()
-  
-  const redirectSignIn = async () => {
-    "use server"
-    redirect('/api/auth/signin')
-  }
+const Navbar = () => {
+  const [session, setSession] = useState<Session | null>(null);
 
-  const redirectSignOut = async () => {
-    "use server"
-    redirect('/api/auth/signout')
-  }
+  useEffect(() => {
+    const fetchSession = async () => {
+      const sessionData = await auth();
+      setSession(sessionData);
+    };
+
+    fetchSession();
+  }, []);
+
+  const redirectSignIn = () => {
+    redirect("/api/auth/signin");
+  };
+
+  const redirectSignOut = () => {
+    redirect("/api/auth/signout");
+  };
 
   const searchInput = (
     <Input
@@ -93,10 +99,10 @@ export const Navbar = async () => {
           </Button>
         </NavbarItem>
         <NavbarItem className="hidden md:flex">
-          <LoginLogout 
-            session={session} 
-            redirectSignIn={ redirectSignIn }
-            redirectSignOut={ redirectSignOut }
+          <LoginLogout
+            session={session}
+            redirectSignIn={redirectSignIn}
+            redirectSignOut={redirectSignOut}
           />
         </NavbarItem>
       </NavbarContent>
@@ -119,8 +125,8 @@ export const Navbar = async () => {
                   index === 2
                     ? "primary"
                     : index === siteConfig.navMenuItems.length - 1
-                      ? "danger"
-                      : "foreground"
+                    ? "danger"
+                    : "foreground"
                 }
                 href="#"
                 size="lg"
@@ -134,3 +140,5 @@ export const Navbar = async () => {
     </NextUINavbar>
   );
 };
+
+export default Navbar;

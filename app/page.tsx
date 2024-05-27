@@ -5,9 +5,7 @@ import { Divider } from "@nextui-org/divider";
 import { Image } from "@nextui-org/image";
 
 export default async function Home() {
-  let waterPerDay = '0'
-
-  const session = await auth()
+  const session = await auth();
 
   return (
     <>
@@ -16,40 +14,44 @@ export default async function Home() {
         <div>
           <Image
             width={100}
-            src={session?.user?.image ? session.user.image : '@/public/no-avatar.png'}
+            src={
+              session?.user?.image
+                ? session.user.image
+                : "@/public/no-avatar.png"
+            }
             alt="Profile Picture"
             className="rounded-full mb-5"
           />
         </div>
         <Card className="max-w-[400px]">
           <CardHeader className="flex justify-center gap-3">
-          <span data-src="">💧</span>
+            <span data-src="">💧</span>
             <div className="flex flex-col">
               <p className="text-md">Water Drop</p>
             </div>
           </CardHeader>
-          <Divider/>
+          <Divider />
           <CardBody className="text-center">
-            <p>Let's keep your body hydrated!</p>
+            <p>Let&apos;s keep your body hydrated!</p>
           </CardBody>
-          <Divider/>
+          <Divider />
         </Card>
       </section>
 
       <section>
         <div className="flex flex-col items-center">
-          {session ?
+          {session ? (
             <Form session={session} />
-            :
+          ) : (
             <Card className="max-w-[400px] text-center">
               <Divider />
               <CardBody>
                 <p>Sign in to start tracking your water intake!</p>
               </CardBody>
             </Card>
-          }
+          )}
         </div>
-    </section>
+      </section>
     </>
   );
 }
