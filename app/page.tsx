@@ -9,7 +9,6 @@ export default async function Home() {
 
   return (
     <>
-      {JSON.stringify(session?.user)}
       <section className="grid place-items-center mb-20">
         <div>
           <Image
