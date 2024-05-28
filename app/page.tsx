@@ -16,7 +16,7 @@ export default async function Home() {
             src={
               session?.user?.image
                 ? session.user.image
-                : "@/public/no-avatar.png"
+                : "https://avatars.githubusercontent.com/u/66191662?v=4"
             }
             alt="Profile Picture"
             className="rounded-full mb-5"
