@@ -1,5 +1,6 @@
 import { auth } from "@/auth";
 import Form from "@/components/form";
+import { SignIn } from "@/components/signIn";
 import { Card, CardBody, CardFooter, CardHeader } from "@nextui-org/card";
 import { Divider } from "@nextui-org/divider";
 import { Image } from "@nextui-org/image";
@@ -47,7 +48,9 @@ export default async function Home() {
             <Card className="max-w-[400px] text-center">
               <Divider />
               <CardBody>
-                <p>Sign in to start tracking your water intake!</p>
+                <SignIn>
+                  Sign in to start tracking your water intake!
+                </SignIn>
               </CardBody>
             </Card>
           )}
