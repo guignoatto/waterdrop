@@ -25,8 +25,11 @@ import { auth } from "@/auth";
 import { redirect } from "next/navigation";
 import LoginLogout from "./login-logout";
 import { Session } from "next-auth";
+import { signIn, signOut } from "next-auth/react";
 
 const Navbar = async () => {
+
+  const session = await auth();
 
   const searchInput = (
     <Input
@@ -71,11 +74,11 @@ const Navbar = async () => {
             isExternal
             as={Link}
             className="text-sm font-normal text-default-600 bg-default-100"
-            href={siteConfig.links.sponsor}
-            startContent={<HeartFilledIcon className="text-danger" />}
+            href={siteConfig.links.github}
+            startContent={<GithubIcon className="text-danger" />}
             variant="flat"
           >
-            Sponsor
+            GitHub
           </Button>
         </NavbarItem>
         <NavbarItem className="hidden md:flex">
@@ -94,23 +97,28 @@ const Navbar = async () => {
       <NavbarMenu>
         {searchInput}
         <div className="mx-4 mt-2 flex flex-col gap-2">
-          {siteConfig.navMenuItems.map((item, index) => (
-            <NavbarMenuItem key={`${item}-${index}`}>
-              <Link
-                color={
-                  index === 2
-                    ? "primary"
-                    : index === siteConfig.navMenuItems.length - 1
-                    ? "danger"
-                    : "foreground"
-                }
-                href="#"
-                size="lg"
-              >
-                {item.label}
-              </Link>
-            </NavbarMenuItem>
-          ))}
+          {siteConfig.navMenuItems.map((item, index) => {
+            if ((item.label === 'SignOut' && session == null) || (item.label === 'SignIn' && session != null)) {
+              return null;
+            }
+            return (
+              <NavbarMenuItem key={`${item}-${index}`}>
+                <Link
+                  color={
+                    index === 2
+                      ? "primary"
+                      : index === siteConfig.navMenuItems.length - 1
+                      ? "danger"
+                      : "foreground"
+                  }
+                  href={item.href}
+                  size="lg"
+                >
+                  {item.label}
+                </Link>
+              </NavbarMenuItem>
+            );
+          })}
         </div>
       </NavbarMenu>
     </NextUINavbar>
