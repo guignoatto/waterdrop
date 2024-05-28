@@ -10,18 +10,20 @@ export default async function Home() {
   return (
     <>
       <section className="grid place-items-center mb-20">
-        <div>
-          <Image
-            width={100}
-            src={
-              session?.user?.image
-                ? session.user.image
-                : "https://avatars.githubusercontent.com/u/66191662?v=4"
-            }
-            alt="Profile Picture"
-            className="rounded-full mb-5"
-          />
-        </div>
+        {session && 
+          <div>
+            <Image
+              width={100}
+              src={
+                session?.user?.image
+                  ? session.user.image
+                  : "https://avatars.githubusercontent.com/u/66191662?v=4"
+              }
+              alt="Profile Picture"
+              className="rounded-full mb-5"
+            />
+          </div>
+        }
         <Card className="max-w-[400px]">
           <CardHeader className="flex justify-center gap-3">
             <span data-src="">💧</span>
