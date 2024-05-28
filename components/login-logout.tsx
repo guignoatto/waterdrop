@@ -3,17 +3,17 @@ import { Button } from "@nextui-org/button";
 import { signIn, signOut, useSession } from "next-auth/react"
 
 export default function LoginLogout() {
-  const data = useSession();
-
+  const { data: session } = useSession();
   return (
     <>
-      {data ? (
+      {session ? (
+        
         <Button
-          className="text-sm font-normal text-default-600 bg-default-100"
-          variant="flat"
-          onPress={() => {
-            signOut();
-          }}
+        className="text-sm font-normal text-default-600 bg-default-100"
+        variant="flat"
+        onPress={() => {
+          signOut();
+        }}
         >
           Sign Out
         </Button>
