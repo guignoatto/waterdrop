@@ -1,24 +1,18 @@
 "use client";
 import { Button } from "@nextui-org/button";
+import { signIn, signOut, useSession } from "next-auth/react"
 
-interface LoginLogoutProps {
-  session: any;
-  redirectSignIn(): void;
-  redirectSignOut(): void;
-}
-export default function LoginLogout({
-  session,
-  redirectSignIn,
-  redirectSignOut,
-}: LoginLogoutProps) {
+export default function LoginLogout() {
+  const data = useSession();
+
   return (
     <>
-      {session ? (
+      {data ? (
         <Button
           className="text-sm font-normal text-default-600 bg-default-100"
           variant="flat"
           onPress={() => {
-            redirectSignOut();
+            signOut();
           }}
         >
           Sign Out
@@ -28,7 +22,7 @@ export default function LoginLogout({
           className="text-sm font-normal text-default-600 bg-default-100"
           variant="flat"
           onPress={() => {
-            redirectSignIn();
+            signIn();
           }}
         >
           Sign In

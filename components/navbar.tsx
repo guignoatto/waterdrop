@@ -26,20 +26,7 @@ import { redirect } from "next/navigation";
 import LoginLogout from "./login-logout";
 import { Session } from "next-auth";
 
-
-
-interface NavbarProps {
-  session: any;
-}
-const Navbar = ({ session }: NavbarProps) => {
-
-  const redirectSignIn = () => {
-    redirect("/api/auth/signin");
-  };
-
-  const redirectSignOut = () => {
-    redirect("/api/auth/signout");
-  };
+const Navbar = async () => {
 
   const searchInput = (
     <Input
@@ -92,11 +79,7 @@ const Navbar = ({ session }: NavbarProps) => {
           </Button>
         </NavbarItem>
         <NavbarItem className="hidden md:flex">
-          <LoginLogout
-            session={session}
-            redirectSignIn={redirectSignIn}
-            redirectSignOut={redirectSignOut}
-          />
+          <LoginLogout />
         </NavbarItem>
       </NavbarContent>
 

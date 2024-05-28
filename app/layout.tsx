@@ -28,12 +28,11 @@ export const viewport: Viewport = {
   ],
 };
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const session = await auth();
   return (
     <html suppressHydrationWarning lang="en">
       <head />
@@ -45,7 +44,7 @@ export default async function RootLayout({
       >
         <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
           <div className="relative flex flex-col h-screen">
-            <Navbar session={session}/>
+            <Navbar />
             <main className="container mx-auto max-w-7xl pt-16 px-6 flex-grow">
               {children}
             </main>
