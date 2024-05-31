@@ -12,10 +12,11 @@ const DayCard: React.FC<Props> = ({ index, weekIntake, setWeekIntake }) => {
     const [inputValue, setInputValue] = useState(weekIntake[index].toString());
 
     return (
-        <div className={`rounded-md ${weekIntake[index] >= 3 ? "bg-green-700" : 'bg-red-950'} `}>
+        <div className={`p-1 rounded-2xl ${weekIntake[index] >= 3 ? "bg-green-700" : 'bg-red-950'} `}>
             <label>Day {index + 1}</label>
             <div>
                 <Input
+                    label='Liters'
                     value={inputValue}
                     type="number"
                     onChange={(e) => {
@@ -28,6 +29,12 @@ const DayCard: React.FC<Props> = ({ index, weekIntake, setWeekIntake }) => {
                     }}
                     color={weekIntake[index] >= 3 ? 'success' : 'danger'}
                     className="p-2 w-full"
+                    onFocusChange={(focused) => {
+                        if (!focused) {
+                            setInputValue(weekIntake[index].toString());
+                        }
+                    }
+                    }
                 />
             </div>
         </div>
