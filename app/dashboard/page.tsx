@@ -1,4 +1,3 @@
-import { Button } from "@nextui-org/button";
 import WeekCard from "./components/week-card";
 
 export default function Dashboard() {

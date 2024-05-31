@@ -1,7 +1,6 @@
 "use client"
 
 import { useState } from "react";
-import { Accordion, AccordionItem } from "@nextui-org/accordion";
 import DayCard from "./day-card";
 import { Card, CardBody, CardHeader } from "@nextui-org/card";
 import { Divider } from "@nextui-org/divider";

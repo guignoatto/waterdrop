@@ -1,4 +1,3 @@
-import { Accordion, AccordionItem } from '@nextui-org/accordion';
 import { Input } from '@nextui-org/input';
 import React, { useState } from 'react';
 
