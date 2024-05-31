@@ -4,13 +4,16 @@ import { SignIn } from "@/components/signIn";
 import { Card, CardBody, CardFooter, CardHeader } from "@nextui-org/card";
 import { Divider } from "@nextui-org/divider";
 import { Image } from "@nextui-org/image";
+import Dashboard from "./dashboard/page";
+import Link from "next/link";
+import { Button } from "@nextui-org/button";
 
 export default async function Home() {
   const session = await auth();
 
   return (
     <>
-      <section className="grid place-items-center mb-20">
+      <section className="grid place-items-center mb-10">
         {session && 
           <div>
             <Image
@@ -43,7 +46,9 @@ export default async function Home() {
       <section>
         <div className="flex flex-col items-center">
           {session ? (
-            <Form session={session} />
+            <Link href="/dashboard">
+              <Button>Lets get started!</Button>
+            </Link>
           ) : (
             <Card className="max-w-[400px] text-center">
               <Divider />
