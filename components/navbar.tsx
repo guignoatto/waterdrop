@@ -13,15 +13,12 @@ import { Kbd } from "@nextui-org/kbd";
 import { Link } from "@nextui-org/link";
 import { Input } from "@nextui-org/input";
 import NextLink from "next/link";
+import { auth } from "@/auth";
 
 import { siteConfig } from "@/config/site";
 import { ThemeSwitch } from "@/components/theme-switch";
-import { GithubIcon, HeartFilledIcon, SearchIcon } from "@/components/icons";
-import { auth } from "@/auth";
-import { redirect } from "next/navigation";
+import { GithubIcon, SearchIcon } from "@/components/icons";
 import LoginLogout from "./login-logout";
-import { Session } from "next-auth";
-import { signIn, signOut } from "next-auth/react";
 
 const Navbar = async () => {
   const session = await auth();

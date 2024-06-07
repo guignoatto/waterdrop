@@ -18,7 +18,6 @@ interface Props {
 }
 
 const DayCard: React.FC<Props> = ({ index, weekIntake, setWeekIntake }) => {
-  const [inputValue, setInputValue] = useState(weekIntake[index].toString());
   const [dayIntake, setDayIntake] = useState<number[]>([0]);
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
@@ -36,23 +35,6 @@ const DayCard: React.FC<Props> = ({ index, weekIntake, setWeekIntake }) => {
       return "bg-orange-700";
     }
     return "bg-red-800";
-  }
-
-  function getInputColor() {
-    if (weekIntake[index] === 0 || weekIntake[index] < 0) {
-      return "danger";
-    }
-
-    let percentage = weekIntake[index] / 3;
-
-    if (percentage >= 1) {
-      return "success";
-    } else if (percentage >= 0.75) {
-      return "warning";
-    } else if (percentage >= 0.5) {
-      return "warning";
-    }
-    return "danger";
   }
 
   return (
