@@ -62,7 +62,9 @@ const DayCard: React.FC<Props> = ({ index, weekIntake, setWeekIntake }) => {
                   +
                 </Button>
                 {dayIntake.map((intake, ix) => (
-                  <div className="flex items-center">
+                  <div className="flex items-center"
+                    key={ix}
+                  >
                     <Input
                       key={ix}
                       label="Liters"
