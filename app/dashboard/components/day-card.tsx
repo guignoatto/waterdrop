@@ -135,7 +135,7 @@ const DayCard: React.FC<Props> = ({ index, weekIntake, setWeekIntake }) => {
         </ModalContent>
       </Modal>
 
-      <div
+      <button
         className={`p-1 rounded-2xl ${checkCardColor()} cursor-pointer hover:bg-gray-800`}
         onClick={onOpen}
       >
@@ -147,7 +147,7 @@ const DayCard: React.FC<Props> = ({ index, weekIntake, setWeekIntake }) => {
           </label>
           <p className="text-sm">Liters</p>
         </div>
-      </div>
+      </button>
     </div>
   );
 };
