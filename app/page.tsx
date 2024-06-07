@@ -14,7 +14,7 @@ export default async function Home() {
   return (
     <>
       <section className="grid place-items-center mb-10">
-        {session && 
+        {session && (
           <div>
             <Image
               width={100}
@@ -27,7 +27,7 @@ export default async function Home() {
               className="rounded-full mb-5"
             />
           </div>
-        }
+        )}
         <Card className="max-w-[400px]">
           <CardHeader className="flex justify-center gap-3">
             <span data-src="">💧</span>
@@ -53,9 +53,7 @@ export default async function Home() {
             <Card className="max-w-[400px] text-center">
               <Divider />
               <CardBody>
-                <SignIn>
-                  Sign in to start tracking your water intake!
-                </SignIn>
+                <SignIn>Sign in to start tracking your water intake!</SignIn>
               </CardBody>
             </Card>
           )}

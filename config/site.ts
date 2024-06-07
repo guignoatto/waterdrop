@@ -41,7 +41,7 @@ export const siteConfig = {
     {
       label: "SignIn",
       href: "/api/auth/signin",
-    }
+    },
   ],
   links: {
     github: "https://github.com/guignoatto/waterdrop",

@@ -16,11 +16,7 @@ import NextLink from "next/link";
 
 import { siteConfig } from "@/config/site";
 import { ThemeSwitch } from "@/components/theme-switch";
-import {
-  GithubIcon,
-  HeartFilledIcon,
-  SearchIcon,
-} from "@/components/icons";
+import { GithubIcon, HeartFilledIcon, SearchIcon } from "@/components/icons";
 import { auth } from "@/auth";
 import { redirect } from "next/navigation";
 import LoginLogout from "./login-logout";
@@ -28,7 +24,6 @@ import { Session } from "next-auth";
 import { signIn, signOut } from "next-auth/react";
 
 const Navbar = async () => {
-
   const session = await auth();
 
   const searchInput = (
@@ -98,7 +93,10 @@ const Navbar = async () => {
         {searchInput}
         <div className="mx-4 mt-2 flex flex-col gap-2">
           {siteConfig.navMenuItems.map((item, index) => {
-            if ((item.label === 'SignOut' && session == null) || (item.label === 'SignIn' && session != null)) {
+            if (
+              (item.label === "SignOut" && session == null) ||
+              (item.label === "SignIn" && session != null)
+            ) {
               return null;
             }
             return (
@@ -108,8 +106,8 @@ const Navbar = async () => {
                     index === 2
                       ? "primary"
                       : index === siteConfig.navMenuItems.length - 1
-                      ? "danger"
-                      : "foreground"
+                        ? "danger"
+                        : "foreground"
                   }
                   href={item.href}
                   size="lg"

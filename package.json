@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint . --ext .ts,.tsx -c .eslintrc.json --fix"
+    "lint": "eslint . --ext .ts,.tsx -c .eslintrc.json --fix",
+    "format": "prettier --write ."
   },
   "dependencies": {
     "@nextui-org/button": "^2.0.31",
@@ -50,6 +51,7 @@
     "next-themes": "^0.2.1",
     "postcss": "8.4.38",
     "postgres": "^3.4.4",
+    "prettier": "^3.3.1",
     "react": "18.3.1",
     "react-dom": "18.3.1",
     "tailwind-variants": "^0.1.20",
