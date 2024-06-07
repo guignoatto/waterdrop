@@ -136,7 +136,7 @@ const DayCard: React.FC<Props> = ({ index, weekIntake, setWeekIntake }) => {
       </Modal>
 
       <button
-        className={`p-1 rounded-2xl ${checkCardColor()} cursor-pointer hover:bg-gray-800`}
+        className={`p-1 rounded-2xl ${checkCardColor()} cursor-pointer hover:bg-gray-800 w-full`}
         onClick={onOpen}
       >
         <label className="cursor-pointer">Day {index + 1}</label>
