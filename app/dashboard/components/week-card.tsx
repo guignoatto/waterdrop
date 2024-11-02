@@ -4,9 +4,15 @@ import { useState } from "react";
 import DayCard from "./day-card";
 import { Card, CardBody, CardHeader } from "@nextui-org/card";
 import { Divider } from "@nextui-org/divider";
+import { Input } from "@nextui-org/input";
+import { Button } from "@nextui-org/button";
+import { GET } from "@/app/api/add-pet/route";
 
 export default function WeekCard() {
   const [weekIntake, setWeekIntake] = useState(Array<number>(7).fill(0));
+
+  const [name, setName] = useState('');
+  const [owner, setOwner] = useState('');
 
   function totalWeekIntake(): number {
     let totalWeekIntake = 0;
@@ -31,6 +37,23 @@ export default function WeekCard() {
     }
     return "text-red-800";
   }
+  
+  async function handleSubmit() {
+    try {
+      const response = await fetch(`/api/add-pet?petName=${name}&ownerName=${name}`, {
+        method: "GET", // ou "POST" caso prefira enviar dados no corpo da requisição
+      });
+      
+      if (response.ok) {
+        // Lógica de sucesso, como uma mensagem ou reset do input
+        console.log("Dados enviados com sucesso!");
+      } else {
+        console.error("Erro ao enviar os dados");
+      }
+    } catch (error) {
+      console.error("Erro na requisição:", error);
+    }
+  }
 
   return (
     <div>
@@ -48,7 +71,34 @@ export default function WeekCard() {
           className={`${totalWeekIntake() >= 7 * 3 ? "bg-green-500" : "bg-red-700"}`}
         />
         <CardBody className="text-center">
-          <div className="grid grid-cols-3 gap-4 rounded-md">
+          <Input
+            key={'InputPetName'}
+            label="Pet Name"
+            value={name}
+            type="string"
+            step={0.1}
+            onChange={(e) => {
+              setName(e.target.value)
+            }}
+            className={`p-2 w-full`}
+            min={0}
+            isInvalid={false}
+          />
+          <Input
+            key={'InputOwnerName'}
+            label="Owner Name"
+            value={owner}
+            type="string"
+            step={0.1}
+            onChange={(e) => {
+              setOwner(e.target.value)
+            }}
+            className={`p-2 w-full`}
+            min={0}
+            isInvalid={false}
+          />
+          <Button onClick={handleSubmit}>Submit</Button>
+          {/* <div className="grid grid-cols-3 gap-4 rounded-md">
             {weekIntake.map((dayIntake, index) => (
               <DayCard
                 key={index}
@@ -57,7 +107,7 @@ export default function WeekCard() {
                 setWeekIntake={setWeekIntake}
               />
             ))}
-          </div>
+          </div> */}
         </CardBody>
       </Card>
     </div>
